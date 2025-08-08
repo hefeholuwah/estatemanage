@@ -27,10 +27,25 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please add an apartment number'],
     trim: true
   },
+  estate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estate',
+    required: [true, 'Please assign an estate']
+  },
   role: {
     type: String,
     enum: ['resident', 'security', 'maintenance'],
     default: 'resident'
+  },
+  shift: {
+    type: String,
+    enum: ['day', 'night', '24h'],
+    default: 'day'
+  },
+  accessLevel: {
+    type: String,
+    enum: ['basic', 'advanced', 'supervisor'],
+    default: 'basic'
   },
   profileImage: {
     type: String,

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const EmergencyAlertSchema = new mongoose.Schema({
+  estate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estate',
+    required: true
+  },
   resident: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

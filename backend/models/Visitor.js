@@ -48,6 +48,11 @@ const VisitorSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  estate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estate',
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

@@ -17,6 +17,7 @@ process.env.ACCESS_CODE_EXPIRE_TIME = ACCESS_CODE_EXPIRE_TIME;
 // Route files
 const auth = require('./routes/auth');
 const adminAuth = require('./routes/adminAuth');
+const admin = require('./routes/admin');
 const visitors = require('./routes/visitors');
 const logs = require('./routes/logs');
 const emergency = require('./routes/emergency');
@@ -34,6 +35,7 @@ app.use(cors());
 // Mount routers
 app.use('/api/auth', auth);
 app.use('/api/auth/admin', adminAuth);
+app.use('/api/admin', admin);
 app.use('/api/visitors', visitors);
 app.use('/api/logs', logs);
 app.use('/api/emergency', emergency);

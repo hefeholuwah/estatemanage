@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const AccessLogSchema = new mongoose.Schema({
+  estate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estate',
+    required: true
+  },
   visitor: {
     type: mongoose.Schema.ObjectId,
     ref: 'Visitor',
