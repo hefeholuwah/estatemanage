@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "estatemanage",
+    "name": "Estate Manage",
     "slug": "estatemanage",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,12 +14,25 @@
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.estatemanage.app"
+      "icon": "./assets/icon.png",
+      "package": "com.estatemanage.estateone",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "10207fb9-a8b1-4b23-8ff6-248955991fb7"
+      }
     }
   }
 }

@@ -9,7 +9,11 @@ const QRCodeScreen = ({ route, navigation }) => {
 
   const handleCopyCode = async () => {
     try {
-      await Clipboard.setStringAsync(visitor?.accessCode || '1234');
+      if (!visitor?.accessCode) {
+        Alert.alert('Error', 'No access code available');
+        return;
+      }
+      await Clipboard.setStringAsync(visitor.accessCode);
       Alert.alert('Success', 'Access code copied to clipboard');
     } catch (error) {
       Alert.alert('Error', 'Failed to copy code');
@@ -18,8 +22,12 @@ const QRCodeScreen = ({ route, navigation }) => {
 
   const handleShare = async () => {
     try {
+      if (!visitor?.accessCode) {
+        Alert.alert('Error', 'No access code available');
+        return;
+      }
       const result = await Share.share({
-        message: `Your access code for Estate One is: ${visitor?.accessCode || '1234'}. This code will expire in 30 minutes.`,
+        message: `Your access code for Estate One is: ${visitor.accessCode}. This code will expire in 30 minutes.`,
       });
     } catch (error) {
       Alert.alert('Error', 'Failed to share code');
@@ -53,11 +61,19 @@ const QRCodeScreen = ({ route, navigation }) => {
           <Text style={styles.title}>Visitor Access Code</Text>
 
           <View style={styles.qrContainer}>
-            <Image
-              source={{ uri: visitor?.qrCode || "https://api.qrserver.com/v1/create-qr-code/?size=204x192&data=1234" }}
-              style={styles.qrCode}
-            />
-            <Text style={styles.pinCode}>{visitor?.accessCode || '1234'}</Text>
+            {visitor?.qrCode ? (
+              <Image
+                source={{ uri: visitor.qrCode }}
+                style={styles.qrCode}
+              />
+            ) : (
+              <View style={styles.qrCodePlaceholder}>
+                <Text style={styles.qrCodePlaceholderText}>QR Code Not Available</Text>
+              </View>
+            )}
+            <Text style={styles.pinCode}>
+              {visitor?.accessCode || 'Generating...'}
+            </Text>
           </View>
 
           <View style={styles.buttonRow}>
@@ -240,6 +256,20 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: '#1D1B20',
     borderRadius: 12,
+  },
+  qrCodePlaceholder: {
+    width: 204,
+    height: 192,
+    backgroundColor: '#F0F0F0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  qrCodePlaceholderText: {
+    fontFamily: 'Raleway_400Regular',
+    fontSize: 14,
+    color: '#666666',
+    textAlign: 'center',
   },
 });
 

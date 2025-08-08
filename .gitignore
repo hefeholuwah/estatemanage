@@ -1,3 +1,5 @@
 .config/
 /node_modules
-/backend
+/backend/.env
+.env
+tutorapp-36f6e-541ba0ffabf0.json
