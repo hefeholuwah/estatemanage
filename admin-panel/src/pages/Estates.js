@@ -195,7 +195,7 @@ const Estates = () => {
 
       {/* Estates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {estates?.map((estate) => (
+        {Array.isArray(estates) && estates.map((estate) => (
           <div key={estate._id} className="card hover:shadow-lg transition-shadow">
             <div className="card-header">
               <div className="flex items-center justify-between">
@@ -276,7 +276,7 @@ const Estates = () => {
       </div>
 
       {/* Empty State */}
-      {(!estates || estates.length === 0) && (
+      {(!estates || !Array.isArray(estates) || estates.length === 0) && (
         <div className="text-center py-12">
           <Building2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No estates found</h3>

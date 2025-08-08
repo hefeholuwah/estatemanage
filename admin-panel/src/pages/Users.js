@@ -274,7 +274,7 @@ const UsersPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredUsers?.map((user) => (
+                {Array.isArray(filteredUsers) && filteredUsers.map((user) => (
                   <tr key={user._id}>
                     <td>
                       <div className="flex items-center">
@@ -446,7 +446,7 @@ const UsersPage = () => {
                   className="form-input"
                 >
                   <option value="">Select Estate</option>
-                  {estates?.map((estate) => (
+                  {Array.isArray(estates) && estates.map((estate) => (
                     <option key={estate._id} value={estate._id}>
                       {estate.name}
                     </option>

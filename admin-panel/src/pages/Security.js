@@ -263,7 +263,7 @@ const SecurityPage = () => {
 
       {/* Security Personnel Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSecurity?.map((security) => (
+        {Array.isArray(filteredSecurity) && filteredSecurity.map((security) => (
           <div key={security._id} className="card hover:shadow-lg transition-shadow">
             <div className="card-header">
               <div className="flex items-center justify-between">
@@ -340,7 +340,7 @@ const SecurityPage = () => {
                       defaultValue=""
                     >
                       <option value="">Assign Estate</option>
-                      {estates.map((estate) => (
+                      {Array.isArray(estates) && estates.map((estate) => (
                         <option key={estate._id} value={estate._id}>
                           {estate.name}
                         </option>
@@ -502,7 +502,7 @@ const SecurityPage = () => {
                   className="form-input"
                 >
                   <option value="">Select Estate</option>
-                  {estates?.map((estate) => (
+                  {Array.isArray(estates) && estates.map((estate) => (
                     <option key={estate._id} value={estate._id}>
                       {estate.name}
                     </option>
