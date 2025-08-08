@@ -104,42 +104,42 @@ router.get('/users/:userId/logs', getLogsByUser);
 router.get('/security/:securityId/logs', getLogsBySecurity);
 router.get('/logs/export', exportLogs);
 
-// QR Code Management routes
-router.post('/estates/:estateId/qr-code', generateQRCodeForEstate);
-router.get('/estates/:estateId/qr-history', getQRCodeHistory);
-router.delete('/qr-codes/:qrCodeId', revokeQRCode);
-router.post('/qr-codes/verify', verifyQRCode);
+// QR Code Management routes - TODO: Implement QR code functionality
+// router.post('/estates/:estateId/qr-code', generateQRCodeForEstate);
+// router.get('/estates/:estateId/qr-history', getQRCodeHistory);
+// router.delete('/qr-codes/:qrCodeId', revokeQRCode);
+// router.post('/qr-codes/verify', verifyQRCode);
 
-// Emergency Management routes
-router.get('/emergency', getAllEmergencies);
-router.get('/emergency/:id', getEmergencyById);
-router.put('/emergency/:id', updateEmergency);
-router.post('/emergency/:id/resolve', resolveEmergency);
-router.delete('/emergency/:id', deleteEmergency);
-router.get('/estates/:estateId/emergency', getEmergenciesByEstate);
+// Emergency Management routes - TODO: Implement emergency management
+// router.get('/emergency', getAllEmergencies);
+// router.get('/emergency/:id', getEmergencyById);
+// router.put('/emergency/:id', updateEmergency);
+// router.post('/emergency/:id/resolve', resolveEmergency);
+// router.delete('/emergency/:id', deleteEmergency);
+// router.get('/estates/:estateId/emergency', getEmergenciesByEstate);
 
-// Maintenance Management routes
-router.get('/maintenance', getAllMaintenance);
-router.get('/maintenance/:id', getMaintenanceById);
-router.put('/maintenance/:id', updateMaintenance);
-router.post('/maintenance/:id/assign', assignMaintenance);
-router.post('/maintenance/:id/complete', completeMaintenance);
-router.delete('/maintenance/:id', deleteMaintenance);
-router.get('/estates/:estateId/maintenance', getMaintenanceByEstate);
+// Maintenance Management routes - TODO: Implement maintenance management
+// router.get('/maintenance', getAllMaintenance);
+// router.get('/maintenance/:id', getMaintenanceById);
+// router.put('/maintenance/:id', updateMaintenance);
+// router.post('/maintenance/:id/assign', assignMaintenance);
+// router.post('/maintenance/:id/complete', completeMaintenance);
+// router.delete('/maintenance/:id', deleteMaintenance);
+// router.get('/estates/:estateId/maintenance', getMaintenanceByEstate);
 
-// Notification Management routes
-router.get('/notifications', getAllNotifications);
-router.post('/notifications', sendNotification);
-router.put('/notifications/:id', updateNotification);
-router.delete('/notifications/:id', deleteNotification);
-router.put('/notifications/:id/read', markNotificationAsRead);
-router.put('/notifications/mark-all-read', markAllNotificationsAsRead);
-router.get('/estates/:estateId/notifications', getNotificationsByEstate);
+// Notification Management routes - TODO: Implement notification management
+// router.get('/notifications', getAllNotifications);
+// router.post('/notifications', sendNotification);
+// router.put('/notifications/:id', updateNotification);
+// router.delete('/notifications/:id', deleteNotification);
+// router.put('/notifications/:id/read', markNotificationAsRead);
+// router.put('/notifications/mark-all-read', markAllNotificationsAsRead);
+// router.get('/estates/:estateId/notifications', getNotificationsByEstate);
 
-// System Settings routes
-router.get('/settings', getSystemSettings);
-router.put('/settings', updateSystemSettings);
-router.get('/settings/backup', getSystemBackup);
-router.post('/settings/restore', restoreSystemBackup);
+// System Settings routes - TODO: Implement system settings
+// router.get('/settings', getSystemSettings);
+// router.put('/settings', updateSystemSettings);
+// router.get('/settings/backup', getSystemBackup);
+// router.post('/settings/restore', restoreSystemBackup);
 
 module.exports = router; 
