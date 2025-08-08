@@ -34,8 +34,18 @@ const UsersPage = () => {
   const queryClient = useQueryClient();
 
   // Fetch data
-  const { data: users, isLoading } = useQuery('users', userApi.getAll);
-  const { data: estates } = useQuery('estates', estateApi.getAll);
+  const { data: users, isLoading, error: usersError } = useQuery('users', userApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching users:', error);
+    }
+  });
+  const { data: estates, error: estatesError } = useQuery('estates', estateApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching estates:', error);
+    }
+  });
 
   // Mutations
   const createUser = useMutation(userApi.create, {
@@ -173,6 +183,24 @@ const UsersPage = () => {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (usersError) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <Users className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Error loading users</h3>
+          <p className="text-gray-600 mb-4">Failed to load users. Please try again later.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn btn-primary"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }

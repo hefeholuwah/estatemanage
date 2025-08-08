@@ -33,11 +33,26 @@ const Estates = () => {
   const queryClient = useQueryClient();
 
   // Fetch estates
-  const { data: estates, isLoading } = useQuery('estates', estateApi.getAll);
+  const { data: estates, isLoading, error: estatesError } = useQuery('estates', estateApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching estates:', error);
+    }
+  });
 
   // Fetch users and security for assignment
-  const { data: users } = useQuery('users', userApi.getAll);
-  const { data: securityPersonnel } = useQuery('security', securityApi.getAll);
+  const { data: users, error: usersError } = useQuery('users', userApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching users:', error);
+    }
+  });
+  const { data: securityPersonnel, error: securityError } = useQuery('security', securityApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching security personnel:', error);
+    }
+  });
 
   // Mutations
   const createEstate = useMutation(estateApi.create, {
@@ -139,6 +154,24 @@ const Estates = () => {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (estatesError) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <Building2 className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Error loading estates</h3>
+          <p className="text-gray-600 mb-4">Failed to load estates. Please try again later.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn btn-primary"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }

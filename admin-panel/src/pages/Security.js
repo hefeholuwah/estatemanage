@@ -38,8 +38,18 @@ const SecurityPage = () => {
   const queryClient = useQueryClient();
 
   // Fetch data
-  const { data: securityPersonnel, isLoading } = useQuery('security', securityApi.getAll);
-  const { data: estates } = useQuery('estates', estateApi.getAll);
+  const { data: securityPersonnel, isLoading, error: securityError } = useQuery('security', securityApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching security personnel:', error);
+    }
+  });
+  const { data: estates, error: estatesError } = useQuery('estates', estateApi.getAll, {
+    retry: 1,
+    onError: (error) => {
+      console.error('Error fetching estates:', error);
+    }
+  });
 
   // Mutations
   const createSecurity = useMutation(securityApi.create, {
@@ -190,6 +200,24 @@ const SecurityPage = () => {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (securityError) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <Shield className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Error loading security personnel</h3>
+          <p className="text-gray-600 mb-4">Failed to load security personnel. Please try again later.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn btn-primary"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
