@@ -17,6 +17,18 @@ exports.registerVisitor = async (req, res) => {
       });
     }
 
+    // Get the resident's estate
+    const resident = await User.findById(req.user.id).select('estate');
+    if (!resident || !resident.estate) {
+      return res.status(400).json({
+        success: false,
+        message: 'Resident is not assigned to an estate'
+      });
+    }
+
+    // Add estate to visitor data
+    req.body.estate = resident.estate;
+
     // Ensure we have default values
     req.body.purpose = req.body.purpose || 'Visit';
     
