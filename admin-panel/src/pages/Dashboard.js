@@ -196,10 +196,10 @@ const Dashboard = () => {
           </div>
           <div className="card-body">
             <div className="space-y-1">
-              {activities?.slice(0, 5).map((activity, index) => (
+              {Array.isArray(activities) && activities.slice(0, 5).map((activity, index) => (
                 <ActivityItem key={index} activity={activity} />
               ))}
-              {(!activities || activities.length === 0) && (
+              {(!activities || !Array.isArray(activities) || activities.length === 0) && (
                 <p className="text-sm text-gray-500 text-center py-4">
                   No recent activities
                 </p>
@@ -219,7 +219,7 @@ const Dashboard = () => {
             </h3>
           </div>
           <div className="card-body">
-            {overview?.recentAlerts?.length > 0 ? (
+            {Array.isArray(overview?.recentAlerts) && overview.recentAlerts.length > 0 ? (
               <div className="space-y-3">
                 {overview.recentAlerts.slice(0, 3).map((alert, index) => (
                   <div key={index} className="flex items-start space-x-3">
