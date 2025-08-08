@@ -2,7 +2,7 @@
 const API_CONFIG = {
   // Development environment
   development: {
-    API_URL: 'http://192.168.1.129:5000/api',
+    API_URL: 'https://estatemanage.onrender.com/api',
     // Add other development-specific configs here
   },
   
