@@ -52,7 +52,7 @@ A comprehensive estate management application built with React Native (Expo) fro
    node server.js
    ```
 
-   The backend will run on `http://localhost:5000`
+   The backend is deployed on `https://estatemanage.onrender.com`
 
 ### Frontend Setup
 
@@ -300,7 +300,7 @@ npx expo start --clear
 cd backend && node seeder.js
 
 # Check backend status
-curl http://localhost:5000
+curl https://estatemanage.onrender.com
 
 # View logs
 cd backend && node server.js
